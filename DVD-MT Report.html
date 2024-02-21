@@ -67,22 +67,113 @@ th {
   // Report Indicators
   //TODO: create an array of all needed indicators ids
 
-   const REPORT_INDICATORS = {
-    'G8aw1WJsbZF':'PEV-Stock de fin de mois BCG',
-    'ifoaUHJcRAE':'PEV-Stock de fin de mois Pentavalent'
+  const REPORT_INDICATORS = {
+    "G8aw1WJsbZF":"PEV-Stock de fin de mois BCG",
+    "ifoaUHJcRAE":"PEV-Stock de fin de mois Pentavalent",
+    "KBGztWwZApP":"population total",
+    "eSC5MXk4h2m": "BCG  ",
+    "RklbhiuTRmI": "Penta-1 ",
+    "Szv5mp9uGVH": "Penta-2 ",
+    "YwhJ5lStYHp": "Penta-3 ",
+    "F63U0EPsz03": "VPI-1",
+    "dnVIcFqExM8": "VPI-2",
+    "bQkaHEIR4po": "VAR-1",
+    "ShcxSZKYsOp": "VAR-2",
+    "F8cgBB8z1V8": "VAA  ",
+    "lHij0C81TkY": "MenA ",
+    "qcPoPdqq6PQ":"Penta-1/Penta-3",
+    "j8GGnwPN6pR":"Penta-1/VAR 1  ",
+    "RJEfsKztwMk":"Ecart VAR 1/VAA",
+    "ARrstEboQGm":"Ecart Polio 3/VPI 1",
+    "RgldIoF0F9A":"Nombre des Districts Sanitaire ",
+    "byFa9L7lZ44":"Nombre de rapports recus:",
+    "B81IxOVopOg":"Nombre de rapports recus a temps: ",
+    "bemQsFwoMdZ":"Taux de completude: 2/1 x 100= ",
+    "KBGztWwZApP":"Population totale desservie: ",
+    "Flaf0zM6F1O":"Grossesses attendues",
+    "mBb22BuG982":"Naissances vivantes ",
+    "tPzSATP3ooB":"Enfants survivants moins d'un an",
    }
-   
+
+   const REPORT_ELEMENTS_AND_CATEGORY_OPTION_COMBO_SEDENTAIRE = {
+    "j3A8puUr3lT.bM2ULjCnqKf":"bcg_0_11",
+    "BazGWWSuUSR.bM2ULjCnqKf":"polio0_0_11",
+    "JRUmdPhq1Zi.bM2ULjCnqKf":"polio1_0_11",
+    "JRUmdPhq1Zi.LLStfhXXh1P":"polio1_12_23",
+    "JRUmdPhq1Zi.HOIDSzZmI70":"polio1 > 23",
+    "I10rLe4mqXu.bM2ULjCnqKf":"polio2_0_11",
+    "I10rLe4mqXu.LLStfhXXh1P":"polio2_12_23",
+    "I10rLe4mqXu.HOIDSzZmI70":"polio2 > 23",
+    "vE8pNKqjcdg.bM2ULjCnqKf":"polio3_0_11",
+    "vE8pNKqjcdg.LLStfhXXh1P":"polio3_12_23",
+    "vE8pNKqjcdg.HOIDSzZmI70":"polio3 > 23",
+    "hOuU8SwUG4X.bM2ULjCnqKf":"vp1_0_11",
+    "hOuU8SwUG4X.LLStfhXXh1P":"vp1_12_23",
+    "hOuU8SwUG4X.HOIDSzZmI70":"vp1 > 23",
+    "jzSVIYXmw63.bM2ULjCnqKf":"vp2_0_11",
+    "jzSVIYXmw63.LLStfhXXh1P":"vp2_12_23",
+    "jzSVIYXmw63.HOIDSzZmI70":"vp2 > 23",
+    "G290xSRWg5N.bM2ULjCnqKf":"pentavalent1_0_11",
+    "G290xSRWg5N.LLStfhXXh1P":"pentavalent1_12_23",
+    "G290xSRWg5N.HOIDSzZmI70":"pentavalent1 > 23",
+    "Ibe2Sfksm4h.bM2ULjCnqKf":"pentavalent2_0_11",
+    "Ibe2Sfksm4h.LLStfhXXh1P":"pentavalent2_12_23",
+    "Ibe2Sfksm4h.HOIDSzZmI70":"pentavalent2 > 23",
+    "hPjkV6i133g.bM2ULjCnqKf":"pentavalent3_0_11",
+    "hPjkV6i133g.LLStfhXXh1P":"pentavalent3_12_23",
+    "hPjkV6i133g.HOIDSzZmI70":"pentavalent3 > 23",
+    "TtjmcRwO7uu.bM2ULjCnqKf":"rota1_0_11",
+    "TtjmcRwO7uu.LLStfhXXh1P":"rota1_12_23",
+    "TtjmcRwO7uu.HOIDSzZmI70":"rota1 > 23",
+    "g9Q2G10Apwz.bM2ULjCnqKf":"rota2_0_11",
+    "g9Q2G10Apwz.LLStfhXXh1P":"rota2_12_23",
+    "g9Q2G10Apwz.HOIDSzZmI70":"rota2 > 23",
+    "KuUj7VnJwBt.bM2ULjCnqKf":"pneumo1_0_11",
+    "KuUj7VnJwBt.LLStfhXXh1P":"pneumo1_12_23",
+    "KuUj7VnJwBt.HOIDSzZmI70":"pneumo1 > 23",
+    "PvCCwAlo5Ow.bM2ULjCnqKf":"pneumo2_0_11",
+    "PvCCwAlo5Ow.LLStfhXXh1P":"pneumo2_12_23",
+    "PvCCwAlo5Ow.HOIDSzZmI70":"pneumo2 > 23",
+    "qWrIz47PwaK.bM2ULjCnqKf":"pneumo3_0_11",
+    "qWrIz47PwaK.LLStfhXXh1P":"pneumo3_12_23",
+    "qWrIz47PwaK.HOIDSzZmI70":"pneumo3 > 23",
+    "S8JPuieBWVA.bM2ULjCnqKf":"var1_0_11",
+    "S8JPuieBWVA.LLStfhXXh1P":"var1_12_23",
+    "S8JPuieBWVA.HOIDSzZmI70":"var1 > 23",
+    "HSYr8SwzwUm.LLStfhXXh1P":"var2_12_23",
+    "HSYr8SwzwUm.HOIDSzZmI70":"var2 > 23",
+    "SPfhUH7AuhZ.bM2ULjCnqKf":"vaa_0_11",
+    "SPfhUH7AuhZ.LLStfhXXh1P":"vaa_12_23",
+    "SPfhUH7AuhZ.HOIDSzZmI70":"vaa > 23",
+    "bssETYC2yiP.bM2ULjCnqKf":"menafrivac_0_11",
+    "bssETYC2yiP.LLStfhXXh1P":"menafrivac_12_23",
+    "bssETYC2yiP.HOIDSzZmI70":"menafrivac > 23",
+    "SPkckba5Sxr.bM2ULjCnqKf":"vitamin_a_0_11",
+    "SPkckba5Sxr.LLStfhXXh1P":"vitamin_a_12_23",
+    "SPkckba5Sxr.HOIDSzZmI70":"vitamin_a > 23",
+    "KkoZGuApdqc.bM2ULjCnqKf":"mebendazole_0_11",
+    "KkoZGuApdqc.LLStfhXXh1P":"mebendazole_12_23",
+    "KkoZGuApdqc.HOIDSzZmI70":"mebendazole > 23",
+    "PFaypXi1Sp6.bM2ULjCnqKf":"milda_0_11",
+    "xbaRHKQvYHO.vjuyYLw6VCY":"td1",
+    "CzYvrZ5q70R.vjuyYLw6VCY":"td2",
+    "fbwTqo4KYXu.vjuyYLw6VCY":"td3",
+    "A2F4HzSSd2t.vjuyYLw6VCY":"td4",
+    "ewklmEhXgbk.vjuyYLw6VCY":"td5",
+   }
+
    
    function generateReportData(periods, orgUnit, organisationUnitChildren) {
 
       getDataSetValues({
+          dx: Object.keys(REPORT_ELEMENTS_AND_CATEGORY_OPTION_COMBO_SEDENTAIRE),
           ou: [orgUnit.id],
           pe: [...periods],
       })
 
       // getting indicators values
       getIndicatorsValues({
-          dx: [reportIndicators],
+          dx: Object.keys(REPORT_INDICATORS),
           pe: [...periods],
           ou: [orgUnit.id]
       })
@@ -99,15 +190,17 @@ th {
    
 
    /* A ne pas Toucher */
-   const getDataSetValues = async ({ ou = [''], pe = ['2022'], }) => {
+   const getDataSetValues = async ({dx =[''], ou = [''], pe = ['2022'], }) => {
             try {
-                const route = `${SERVEUR_URL}/api/dataValueSets?orgUnit=${ou[0]}&dataSet=Jx9JzSPnPVx&period=${pe[0]}`
-
+                const route = `${SERVEUR_URL}/api/analytics?dimension=dx:${dx.join(';')}&dimension=ou:${ou.join(';')}&dimension=pe:${pe.join(';')}`
+                
                 const response = await axios.get(route)
-                const datas = response.data
-
-                const dataValues = datas?.dataValues 
-
+                const data = response.data
+                const rows = data.rows
+                const headers = data.headers
+                // console.log('route', route)
+                // console.log("data", data)
+                // console.log("rows", rows)
                 // variables to store report values such as totals 
                 let bcg_total = 0;
                 let penta1_total = 0;
@@ -120,25 +213,40 @@ th {
                 let vpi1_total = 0;
                 let vpi2_total = 0;
 
-                
-                // pass values to their respective html elements and construct id like: "j3A8puUr3lT-bM2ULjCnqKf" which is the data element id - category option combo id from the api
-                const value = dataValues?.map((data) => {
-                    const { dataElement, categoryOptionCombo, value } = data
-                    const elID = `${dataElement}-${categoryOptionCombo}`
+                // loop throught rows and populate the innerhtml using the ids
+                rows.forEach(row => {
+                    const [dx, ou, pe, value] = row
+                    const element_id = dx
+                    const element_value = value
 
-                    // test whether the element exists in the html
-                    const el = document.getElementById(elID)
-                    if (el) {
-                        el.innerHTML = value
+                    // check if the element id is in html
+                    if (document.getElementById(element_id)) {
+                        // populate the html elements with the values
+                        document.getElementById(element_id).innerHTML = element_value
+                    } 
+
+                    // calculate the totals looking at the dx's first element after splitting by '.'
+                    if (dx.split('.')[0] === 'j3A8puUr3lT') {
+                        bcg_total += parseInt(value)
+                    } else if (dx.split('.')[0] === 'G290xSRWg5N') {
+                        penta1_total += parseInt(value)
+                    } else if (dx.split('.')[0] === 'Ibe2Sfksm4h') {
+                        penta2_total += parseInt(value)
+                    } else if (dx.split('.')[0] === 'hPjkV6i133g') {
+                        penta3_total += parseInt(value)
+                    } else if (dx.split('.')[0] === 'BazGWWSuUSR') {
+                        polio0_total += parseInt(value)
+                    } else if (dx.split('.')[0] === 'JRUmdPhq1Zi') {
+                        polio1_total += parseInt(value)
+                    } else if (dx.split('.')[0] === 'I10rLe4mqXu') {
+                        polio2_total += parseInt(value)
+                    } else if (dx.split('.')[0] === 'vE8pNKqjcdg') {
+                        vpi1_total += parseInt(value)
+                    } else if (dx.split('.')[0] === 'jzSVIYXmw63') {
+                        vpi2_total += parseInt(value)
                     }
 
-                    //calculate the totals and store them in the html
-                    if (dataElement === "j3A8puUr3lT") {  bcg_total += parseInt(value == null ? 0 : value) }
-                    if (dataElement === "G290xSRWg5N") {  penta1_total += parseInt(value == null ? 0 : value) }
-                    if (dataElement === "Ibe2Sfksm4h") {  penta2_total += parseInt(value == null ? 0 : value) }
-                    if (dataElement === "hPjkV6i133g") {  penta3_total += parseInt(value == null ? 0 : value) }
-                   
-                  })
+                })
 
                   // populate the totals in the html
                   document.getElementById("bcg_total").innerHTML = bcg_total
@@ -174,7 +282,7 @@ th {
     }
       
 
-    
+
 
 
   /* A ne pas Toucher */
@@ -303,53 +411,53 @@ th {
         </tr>
         <tr>
           <td>BCG</td>
-          <td><span id="j3A8puUr3lT-bM2ULjCnqKf"></span></td>
-          <td>0</span></td>
+          <td id="j3A8puUr3lT.bM2ULjCnqKf"></td>
           <td>0</td>
-          <td><span id="bcg_total"></span></td>
-          <td><span id="EUDIXTLbqFc-Y1IEJV78ohg"></span></td>
-          <td><span id="bcg_taux_perte"></span></td>
+          <td>0</td>
+          <td id="bcg_total"></td>
+          <td id="EUDIXTLbqFc.Y1IEJV78ohg"></td>
+          <td id="bcg_taux_perte"></td>
         </tr>
         <tr>
           <td>Penta-1</td>
-          <td><span id="G290xSRWg5N-bM2ULjCnqKf"></span></td>
-          <td><span id="G290xSRWg5N-LLStfhXXh1P"></span></td>
-          <td><span id="G290xSRWg5N-HOIDSzZmI70"></span></td>
-          <td><span id="penta1_total"></span></td>
-          <td><span id="To8PtuGIrd6-Y1IEJV78ohg"></span></td>
-          <td><span id="penta1_taux_perte"></span></td>
+          <td id="G290xSRWg5N.bM2ULjCnqKf"></td>
+          <td id="G290xSRWg5N.LLStfhXXh1P"></td>
+          <td id="G290xSRWg5N.HOIDSzZmI70"></td>
+          <td id="penta1_total"></td>
+          <td id="To8PtuGIrd6.Y1IEJV78ohg"></td>
+          <td id="penta1_taux_perte"></td>
         </tr>
         <tr>
           <td>Penta-2</td>
-          <td><span id="Ibe2Sfksm4h-bM2ULjCnqKf"></span></td>
-          <td><span id="Ibe2Sfksm4h-LLStfhXXh1P"></span></td>
-          <td><span id="Ibe2Sfksm4h-HOIDSzZmI70"></span></td>
-          <td><span id="penta2_total"></span></td>
-          <td><span>-</span></td>
-          <td><span id="penta2_taux_perte"></span></td>
+          <td id="Ibe2Sfksm4h.bM2ULjCnqKf"></td>
+          <td id="Ibe2Sfksm4h.LLStfhXXh1P"></td>
+          <td id="Ibe2Sfksm4h.HOIDSzZmI70"></td>
+          <td id="penta2_total"></td>
+          <td>-</td>
+          <td id="penta2_taux_perte"></td>
         </tr>
         <tr>
           <td>Penta-3</td>
-          <td><span id="hPjkV6i133g-bM2ULjCnqKf"></span></td>
-          <td><span id="hPjkV6i133g-LLStfhXXh1P"></span></td>
-          <td><span id="hPjkV6i133g-HOIDSzZmI70"></span></td>
-          <td><span id="penta3_total"></span></td>
-          <td><span>-</span></td>
-          <td><span id="penta3_taux_perte"></span></td>
+          <td id="hPjkV6i133g.bM2ULjCnqKf"></td>
+          <td id="hPjkV6i133g.LLStfhXXh1P"></td>
+          <td id="hPjkV6i133g.HOIDSzZmI70"></td>
+          <td id="penta3_total"></td>
+          <td>-</td>
+          <td id="penta3_taux_perte"></td>
         </tr>
         <tr>
           <td>Polio-0</td>
-          <td><span id="vE8pNKqjcdg-bM2ULjCnqKf"></span></td>
-          <td>400</td>
-          <td>500</td>
-          <td>1200</td>
-          <td>1250</td>
+          <td id="BazGWWSuUSR.bM2ULjCnqKf"></td>
+          <td>-</td>
+          <td>-</td>
+          <td id="polio0_total"></td>
+          <td></td>
           <td>4.17%</td>
         </tr>
         <tr>
           <td>Polio-1</td>
-          <td>350</td>
-          <td>450</td>
+          <td id="JRUmdPhq1Zi.bM2ULjCnqKf"></td>
+          <td id="JRUmdPhq1Zi.LLStfhXXh1P"></td>
           <td>550</td>
           <td>1350</td>
           <td>1400</td>
@@ -366,7 +474,7 @@ th {
         </tr>
         <tr>
           <td>Polio-3</td>
-          <td>450</td>
+          <td><span id="JRUmdPhq1Zi.bM2ULjCnqKf"></span></td>
           <td>550</td>
           <td>650</td>
           <td>1650</td>
