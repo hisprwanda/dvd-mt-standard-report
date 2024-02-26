@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar and Line Charts</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div style="display: flex; justify-content: space-between;">
+        <canvas id="myChart1" style="width: 50%;"></canvas>
+        <canvas id="myChart2" style="width: 50%;"></canvas>
+    </div>
+    <div style="display: flex; justify-content: space-between;">
+        <canvas id="myChart3" style="width: 50%;"></canvas>
+        <canvas id="myChart4" style="width: 50%;"></canvas>
+    </div>
+    
+
+    <script>
+      const sample_data =  {
+            "metaData": {
+                "items": {
+                    "202311": {
+                        "name": "November 2023"
+                    },
+                    "dx": {
+                        "name": "Data"
+                    },
+                    "SDVFpi3XYGp": {
+                        "name": "PEV_CSHop_Taux de promptitude"
+                    },
+                    "pe": {
+                        "name": "Period"
+                    },
+                    "ou": {
+                        "name": "Organisation unit"
+                    },
+                    "oeac0qDcojk": {
+                        "name": "TCHAD"
+                    },
+                    "LAST_3_MONTHS": {
+                        "name": "Last 3 months"
+                    },
+                    "nHyeKWdY0YB": {
+                        "name": "PEV_CSHop_Taux de completude"
+                    },
+                    "202312": {
+                        "name": "December 2023"
+                    },
+                    "202401": {
+                        "name": "January 2024"
+                    }
+                }
+            },
+            "rows": [
+                [
+                    "nHyeKWdY0YB",
+                    "202311",
+                    "86.87"
+                ],
+                [
+                    "nHyeKWdY0YB",
+                    "202312",
+                    "83.39"
+                ],
+                [
+                    "nHyeKWdY0YB",
+                    "202401",
+                    "51.49"
+                ],
+                [
+                    "SDVFpi3XYGp",
+                    "202311",
+                    "44.12"
+                ],
+                [
+                    "SDVFpi3XYGp",
+                    "202312",
+                    "59.69"
+                ],
+                [
+                    "SDVFpi3XYGp",
+                    "202401",
+                    "51.41"
+                ]
+            ]
+        }  
+
+        function createChart(ctx, type, data) {
+    // Prepare your data
+    var labels = [];
+    var datasets = {};
+
+    data.rows.forEach(function(row) {
+        var period = data.metaData.items[row[1]].name;
+        var value = parseFloat(row[2]);
+        var dx = row[0];
+
+        if (!datasets[dx]) {
+            datasets[dx] = {
+                label: data.metaData.items[dx].name,
+                data: [],
+                backgroundColor: 'rgba(' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) + ', 0.2)',
+                borderColor: 'rgba(' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) + ', 1)',
+                borderWidth: 1
+            };
+        }
+
+        if (labels.indexOf(period) === -1) {
+            labels.push(period);
+        }
+
+        datasets[dx].data.push(value);
+    });
+
+    // Convert datasets to array
+    var datasetsArray = Object.keys(datasets).map(function(key) {
+        return datasets[key];
+    });
+
+    // Create the chart
+    new Chart(ctx, {
+        type: type,
+        data: {
+            labels: labels,
+            datasets: datasetsArray
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                },
+            },
+            responsive: false
+        }
+    });
+}
+
+// Get the contexts of your canvas elements
+var ctx1 = document.getElementById('myChart1').getContext('2d');
+var ctx2 = document.getElementById('myChart2').getContext('2d');
+var ctx3 = document.getElementById('myChart3').getContext('2d');
+var ctx4 = document.getElementById('myChart4').getContext('2d');
+
+// Create the charts
+createChart(ctx1, 'bar', sample_data);
+createChart(ctx2, 'bar', sample_data);
+createChart(ctx3, 'radar', sample_data);
+createChart(ctx4, 'line', sample_data);
+
+</script>
+</body>
+</html>
