@@ -59,6 +59,7 @@ th {
 
 #approvals {
   margin-left: 20px;
+  margin-top: 80px
 }
 
 button.btn-export {
@@ -100,11 +101,12 @@ button.btn-export {
     "RgldIoF0F9A":"Nombre des Districts Sanitaire ",
     "byFa9L7lZ44":"Nombre de rapports recus:",
     "B81IxOVopOg":"Nombre de rapports recus a temps: ",
-    "bemQsFwoMdZ":"Taux de completude: 2/1 x 100= ",
+    "QwNhGWUNtbP":"Taux de completude: 2/1 x 100= ",
     "KBGztWwZApP":"Population totale desservie: ",
     "Flaf0zM6F1O":"Grossesses attendues",
     "mBb22BuG982":"Naissances vivantes ",
     "tPzSATP3ooB":"Enfants survivants moins d'un an",
+    "Rs8Y07sdks3":"Enfants survivants 12-23mois",
    }
 
    const REPORT_ELEMENTS_AND_CATEGORY_OPTION_COMBO_SEDENTAIRE = {
@@ -353,6 +355,12 @@ button.btn-export {
             // you need first to create the html elements with the same id as the data element id in the api
             // then loop through the dataValues and populate the html elements with the values
 
+            dataValues.forEach(dataValue => {
+              const { dataElement, value } = dataValue
+              if (document.getElementById(dataElement)) {
+                document.getElementById(dataElement).innerHTML = value
+              }
+            })
 
           }catch (err){
             console.log("Error occured while getting indicators:", err);
@@ -550,25 +558,25 @@ button.btn-export {
           <tbody>
             <tr>
               <td colspan="2">Population totale desservie:</td>
-              <td id="KBGztWwZApP">56</td>
+              <td id="KBGztWwZApP"></td>
               
             </tr>
             <tr>
               <td colspan="2">Grossesses attendues</td>
-              <td id="Flaf0zM6F1O">3</td>
+              <td id="Flaf0zM6F1O"></td>
               
             </tr>
             <tr>
               <td colspan="2">Naissances vivantes</td>
-              <td id="Flaf0zM6F1O">6</td>
+              <td id="mBb22BuG982"></td>
             </tr>
             <tr>
               <td colspan="2">Enfants survivants moins d'un an</td>
-              <td id="tPzSATP3ooB">6</td>
+              <td id="tPzSATP3ooB"></td>
             </tr>
             <tr>
               <td colspan="2">Enfants survivants 12-23mois</td>
-              <td>6</td>
+              <td id="Rs8Y07sdks3"></td>
           </tbody>
         </table>
       
@@ -730,14 +738,14 @@ button.btn-export {
             </tr>
             <tr>
               <td colspan="3" >Taux de completude: 2/1 x 100=</td>
-              <td id="bemQsFwoMdZ">100%</td>
+              <td id="QwNhGWUNtbP">100%</td>
             </tr>
             <tr>
               <td colspan="3" >Taux de completude: 3/1 x 100=</td>
-              <td id="">100%</td>
+              <td id="QwNhGWUNtbP">100%</td>
             </tr>
             <tr>
-              <td colspan="4">Couv. Vaccinale du mois /cumulée=</td>
+              <th colspan="4">Couv. Vaccinale du mois /cumulée</th>
             </tr>
     
             <tr>
