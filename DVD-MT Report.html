@@ -16,19 +16,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Report Template</title>
 <style>
+  body{
+    font-family: Arial, Helvetica, sans-serif;
+  }
   table {
   border-collapse: collapse;
   width: 100%;
 }
 
-th, td {
+td {
   border: 1px solid black;
   padding: 4px;
   text-align: left; /* Align text to the left */
 }
 
 th {
-  background-color: #f2f2f2;
+  border: 1px solid black;
+  background-color: #c6c6c6;
+  text-align: center;
 }
 
   .centered {
@@ -292,6 +297,15 @@ button.btn-export {
                 let polio3_total = 0;
                 let vpi1_total = 0;
                 let vpi2_total = 0;
+                let var1_total = 0;
+                let var2_total = 0;
+                let vaa_total = 0;
+                let mena_total = 0;
+                let td1_total = 0;
+                let td2_total = 0;
+                let td3_total = 0;
+                let td4_total = 0;
+                let td5_total = 0;
 
                 // loop throught rows and populate the innerhtml using the ids
                 rows.forEach(row => {
@@ -326,20 +340,16 @@ button.btn-export {
                         vpi2_total += parseInt(value)
                     }
 
+                    //TODO: add the above totals
+
                 })
 
                   // populate the totals in the html
                   // document.getElementById("bcg_total").innerHTML = bcg_total
                   // document.getElementById("penta1_total").innerHTML = penta1_total
                   // document.getElementById("penta2_total").innerHTML = penta2_total
-                  // document.getElementById("penta3_total").innerHTML = penta3_total
-
-                
-                //TODO: Create a single graph with api data for now
-                //TODO: add print button and test it (may be not urgent)
-
-                
-
+                  // document.getElementById("penta3_total").innerHTML = penta3_total                
+                  //TODO: add the remaining totals.
             } catch (err) {
                 console.log(err)
             }
@@ -531,22 +541,18 @@ button.btn-export {
       <section id="section_one">
         <div class="header">
           <div class="header-left">
-            <img src="embleme.png" alt="">
+            <img src="embleme.png" alt="" style="width: 100px;">
             
           </div>
           
-          
-            MINISTERE DE LA SANTE PUBLIQUE <br>
-            --------------<br>
-            Direction de la Vaccination <br>
-            REPUBLIQUE DU TCHAD<br>
-            --------------<br>
-            Unité - Travail - Progrès
-    
-    
-          
+          <div style="text-align: center; font-size: 24px; font-style: bold;">
+            <strong> MINISTERE DE LA SANTE PUBLIQUE ET DE LA PREVENTION<br>
+            ------------------------------------<br>
+            DIRECTION DE LA VACCINATION</strong>    
+          </div>
+                    
           <div class="header-right">
-            <img src="drapeau.png" alt="" style="width: 173px; display:flex ">        
+            <img src="drapeau.png" alt="" style="width: 100px; display:flex; float: right;">        
           </div>
         </div>
       </section>
@@ -565,7 +571,7 @@ button.btn-export {
           <tbody>
             <tr>
               <td colspan="2">Population totale desservie:</td>
-              <td id="KBGztWwZApP"></td>
+              <td id="KBGztWwZApP">18003440</td>
               
             </tr>
             <tr>
@@ -723,6 +729,102 @@ button.btn-export {
               <td id="VPI-2_total"></td>
               <td>2000</td>
               <td>2.56%</td>
+            </tr>
+            <tr>
+              <th>Antigenes</th>
+              <th>0-11 mois</th>
+              <th>12-23 mois</th>
+              <th>>23 mois</th>
+              <th>Total</th>
+              <th>Doses Utilisées</th>
+              <th>Taux de perte</th>
+            </tr>
+            <tr>
+              <td>VAR-1</td>
+              <td id="S8JPuieBWVA.bM2ULjCnqKf">-</td>
+              <td id="S8JPuieBWVA.LLStfhXXh1P">-</td>
+              <td id="S8JPuieBWVA.HOIDSzZmI70">-</td>
+              <td id="var1_total">-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>VAR-2</td>
+              <td>-</td>
+              <td id="HSYr8SwzwUm.LLStfhXXh1P">-</td>
+              <td id="HSYr8SwzwUm.HOIDSzZmI70">-</td>
+              <td id="var2_total">-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>VAA</td>
+              <td id="SPfhUH7AuhZ.bM2ULjCnqKf">-</td>
+              <td id="SPfhUH7AuhZ.LLStfhXXh1P">-</td>
+              <td id="SPfhUH7AuhZ.HOIDSzZmI70">-</td>
+              <td id="vaa_total">-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>MenA</td>
+              <td id="bssETYC2yiP.bM2ULjCnqKf">-</td>
+              <td id="bssETYC2yiP.LLStfhXXh1P">-</td>
+              <td id="bssETYC2yiP.HOIDSzZmI70">-</td>
+              <td id="mena_total">-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th rowspan="2">Antigenes</th>
+              <th colspan="4">Doses administrées</th>
+              <th rowspan="2">Doses utilisées</th>
+              <th rowspan="2">Taux de perte</th>
+            </tr>
+            <tr>
+              <th>F. enceites</th>
+              <th colspan="2">FAP</th>
+              <th>Total</th>
+            </tr>
+            <tr>
+              <td>Td-1</td>
+              <td id="xbaRHKQvYHO.vjuyYLw6VCY">-</td>
+              <td colspan="2">-</td>
+              <td id="td1_total">-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>Td-2</td>
+              <td id="CzYvrZ5q70R.vjuyYLw6VCY">-</td>
+              <td colspan="2">-</td>
+              <td id="td2_total">-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>Td-3</td>
+              <td id="fbwTqo4KYXu.vjuyYLw6VCY">-</td>
+              <td colspan="2">-</td>
+              <td id="td3_total">-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>Td-4</td>
+              <td id="A2F4HzSSd2t.vjuyYLw6VCY">-</td>
+              <td colspan="2">-</td>
+              <td id="td4_total">-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>Td-5</td>
+              <td id="ewklmEhXgbk.vjuyYLw6VCY">-</td>
+              <td colspan="2">-</td>
+              <td id="td5_total">-</td>
+              <td>-</td>
+              <td>-</td>
             </tr>
           </tbody>
         </table>
