@@ -15,6 +15,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Report Template</title>
+  
   <style>
     body{
     font-family: Arial, Helvetica, sans-serif;
@@ -71,40 +72,36 @@
     transition: all 0.3s ease-in-out;
     cursor: pointer;
     }
+    .chart_sub_container {
+      margin-top: 54px;
+    }
+    .chart_sub_container div {
+      display: flex; 
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    .chart_sub_container h3 {
+      background-color: #f7f7f8;
+      padding: 20px 20px 20px 40px;
+      border-radius: 10px;
+    }
+
   </style>
+
   <script>
     // Report Indicators
     
-    const REPORT_INDICATORS = {
-      "G8aw1WJsbZF":"PEV-Stock de fin de mois BCG",
-      "ifoaUHJcRAE":"PEV-Stock de fin de mois Pentavalent",
+    const DISTRICT_POPULATION_DATA_SUMMARY = {
       "KBGztWwZApP":"population total",
-      "eSC5MXk4h2m": "BCG  ",
-      "RklbhiuTRmI": "Penta-1 ",
-      "Szv5mp9uGVH": "Penta-2 ",
-      "YwhJ5lStYHp": "Penta-3 ",
-      "F63U0EPsz03": "VPI-1",
-      "dnVIcFqExM8": "VPI-2",
-      "bQkaHEIR4po": "VAR-1",
-      "ShcxSZKYsOp": "VAR-2",
-      "F8cgBB8z1V8": "VAA  ",
-      "lHij0C81TkY": "MenA ",
-      "qcPoPdqq6PQ":"Penta-1/Penta-3",
-      "j8GGnwPN6pR":"Penta-1/VAR 1  ",
-      "RJEfsKztwMk":"Ecart VAR 1/VAA",
-      "ARrstEboQGm":"Ecart Polio 3/VPI 1",
-      "RgldIoF0F9A":"Nombre des Districts Sanitaire ",
-      "byFa9L7lZ44":"Nombre de rapports recus:",
-      "B81IxOVopOg":"Nombre de rapports recus a temps: ",
-      "QwNhGWUNtbP":"Taux de completude: 2/1 x 100= ",
       "KBGztWwZApP":"Population totale desservie: ",
       "Flaf0zM6F1O":"Grossesses attendues",
       "mBb22BuG982":"Naissances vivantes ",
       "tPzSATP3ooB":"Enfants survivants moins d'un an",
       "Rs8Y07sdks3":"Enfants survivants 12-23mois",
      }
-    
-     const REPORT_ELEMENTS_AND_CATEGORY_OPTION_COMBO_SEDENTAIRE = {
+
+     
+     const RAPPORT_MENSUEL_DE_VACCINATION = {
       "j3A8puUr3lT.bM2ULjCnqKf":"bcg_0_11",
       "BazGWWSuUSR.bM2ULjCnqKf":"polio0_0_11",
       "JRUmdPhq1Zi.bM2ULjCnqKf":"polio1_0_11",
@@ -170,23 +167,88 @@
       "A2F4HzSSd2t.vjuyYLw6VCY":"td4",
       "ewklmEhXgbk.vjuyYLw6VCY":"td5",
      }
+
+     const PRINCIPAUX_INDICATEURS = {
+      "RgldIoF0F9A":"Nombre des Districts Sanitaire ",
+      "byFa9L7lZ44":"Nombre de rapports recus:",
+      "B81IxOVopOg":"Nombre de rapports recus a temps: ",
+      "QwNhGWUNtbP":"Taux de completude: 2/1 x 100= ",
+     }
+
+     const COUV_VACCINALE_VACCINATION_REALISEE = {
+      "eSC5MXk4h2m": "BCG  ",
+      "RklbhiuTRmI": "Penta-1 ",
+      "Szv5mp9uGVH": "Penta-2 ",
+      "YwhJ5lStYHp": "Penta-3 ",
+      "F63U0EPsz03": "VPI-1",
+      "dnVIcFqExM8": "VPI-2",
+      "bQkaHEIR4po": "VAR-1",
+      "ShcxSZKYsOp": "VAR-2",
+      "F8cgBB8z1V8": "VAA  ",
+      "lHij0C81TkY": "MenA ",
+     }
+
+     const COUV_VACCINALE_TAUX_DABANDON = {
+      "qcPoPdqq6PQ":"Penta-1/Penta-3",
+      "j8GGnwPN6pR":"Penta-1/VAR 1  ",
+      "RJEfsKztwMk":"Ecart VAR 1/VAA",
+      "ARrstEboQGm":"Ecart Polio 3/VPI 1",
+     }
+
+     const SITUATION_DES_STOCKS_DU_DEPOT = {
+      "G8aw1WJsbZF":"PEV-Stock de fin de mois BCG",
+      "ifoaUHJcRAE":"PEV-Stock de fin de mois Pentavalent",
+     }
     
-     
      function generateReportData(periods, orgUnit, organisationUnitChildren) {
     
+       // DISTRICT_POPULATION_DATA_SUMMARY
+       getIndicatorsValues({
+           dx: Object.keys(DISTRICT_POPULATION_DATA_SUMMARY),
+           pe: [...periods],
+           ou: [orgUnit.id],
+            prefix: ''
+       })
+
+        // RAPPORT_MENSUEL_DE_VACCINATION
         getDataSetValues({
-            dx: Object.keys(REPORT_ELEMENTS_AND_CATEGORY_OPTION_COMBO_SEDENTAIRE),
+            dx: Object.keys(RAPPORT_MENSUEL_DE_VACCINATION),
             ou: [orgUnit.id],
             pe: [...periods],
         })
     
-        // getting indicators values
+
+        // PRINCIPAUX_INDICATEURS
         getIndicatorsValues({
-            dx: Object.keys(REPORT_INDICATORS),
+            dx: Object.keys(PRINCIPAUX_INDICATEURS),
             pe: [...periods],
-            ou: [orgUnit.id]
+            ou: [orgUnit.id],
+            prefix: ''
         })
-    
+
+        // COUV_VACCINALE_VACCINATION_REALISEE
+        getIndicatorsValues({
+            dx: Object.keys(COUV_VACCINALE_VACCINATION_REALISEE),
+            ou: [orgUnit.id],
+            pe: [...periods],
+            prefix: '%'
+        })
+
+        // COUV_VACCINALE_TAUX_DABANDON
+        getIndicatorsValues({
+            dx: Object.keys(COUV_VACCINALE_TAUX_DABANDON),
+            ou: [orgUnit.id],
+            pe: [...periods],
+            prefix: '%'
+        })
+
+        // SITUATION_DES_STOCKS_DU_DEPOT
+        getIndicatorsValues({
+            dx: Object.keys(SITUATION_DES_STOCKS_DU_DEPOT),
+            ou: [orgUnit.id],
+            pe: [...periods],
+            prefix: ''
+        })
     
         // completude_promptitude
         createVisualizations({
@@ -344,7 +406,7 @@
              }
          }
     
-     const getIndicatorsValues =  async ({ dx, pe, ou }) => {
+     const getIndicatorsValues =  async ({ dx, pe, ou, prefix }) => {
            try {
              const route = `${SERVEUR_URL}/api/analytics/dataValueSet.json?dimension=dx:${dx.join(';')}&dimension=pe:${pe.join(';')}&dimension=ou:${ou.join(';')}`
              const response = await axios.get(route)
@@ -477,27 +539,24 @@
        type: 'html',
        style: `
        body{
-     font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     }
     table {
     border-collapse: collapse;
     width: 100%;
     }
-    
     td {
     border: 1px solid black;
     padding: 4px;
     text-align: left; /* Align text to the left */
     }
-    
     th {
     border: 1px solid black;
     background-color: #c6c6c6;
     text-align: center;
     }
-    
     .centered {
-     text-align: center;
+    text-align: center;
     }
     .header {
     border: 1px solid black;
@@ -506,14 +565,12 @@
     display: flex;
     justify-content: space-between;
     }
-    
     .header-left, .header-right {
     flex: 1;
     }
     .table-container {
     display: flex;
     }
-    
     .table-container table {
     flex: 1;
     }
@@ -521,24 +578,34 @@
     flex: 1;
     margin-right: 10px; /* Adjust spacing between tables */
     }
-    
     #approvals {
     font-weight: bolder;
     margin-left: 20px;
     margin-top: 80px
     }
-    
     button.btn-export {
-             background-color: #07405a;
-             color: #fff;
-             font-weight: bold;
-             padding: 10px 15px;
-             border-radius: 5px;
-             border: none;
-             transition: all 0.3s ease-in-out;
-             cursor: pointer;
-    
-         }
+    background-color: #07405a;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    }
+    .chart_sub_container {
+      margin-top: 54px;
+    }
+    .chart_sub_container div {
+      display: flex; 
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    .chart_sub_container h3 {
+      background-color: #f7f7f8;
+      padding: 20px 20px 20px 40px;
+      border-radius: 10px;
+    }
     
        `
      });
@@ -582,7 +649,7 @@
             <tbody>
               <tr>
                 <td colspan="2">Population totale desservie:</td>
-                <td id="KBGztWwZApP">18003440</td>
+                <td id="KBGztWwZApP"></td>
               </tr>
               <tr>
                 <td colspan="2">Grossesses attendues</td>
@@ -849,69 +916,69 @@
               </tr>
               <tr>
                 <td colspan="3" >Taux de completude: 2/1 x 100=</td>
-                <td id="QwNhGWUNtbP">100%</td>
+                <td><span id="QwNhGWUNtbP"></span>%</td> 
               </tr>
               <tr>
                 <td colspan="3" >Taux de completude: 3/1 x 100=</td>
-                <td id="QwNhGWUNtbP">100%</td>
+                <td id="QwNhGWUNtbP">-</td>
               </tr>
               <tr>
                 <th colspan="4">Couv. Vaccinale du mois /cumulée</th>
               </tr>
               <tr>
-                <th colspan="2">(Vaccinations réalisées/Pop.Cible)x100)</th>
+                <th colspan="2">((Vaccinations réalisées/Pop.Cible)x100)</th>
                 <th>Mensuel</th>
                 <th>Cumulée</th>
               </tr>
               <tr>
                 <td colspan="2">BCG</td>
-                <td id="eSC5MXk4h2m"></td>
-                <td>100%</td>
+                <td id="eSC5MXk4h2m"></td> 
+                <td>-</td>
               </tr>
               <tr>
                 <td colspan="2">Penta-1</td>
-                <td>100%</td>
-                <td>100%</td>
+                <td id="RklbhiuTRmI"></td>
+                <td>-</td>
               </tr>
               <tr>
                 <td colspan="2">Penta-2</td>
-                <td>100%</td>
-                <td>100%</td>
+                <td id="Szv5mp9uGVH"></td>
+                <td>-</td>
               </tr>
               <tr>
                 <td colspan="2">Penta-3</td>
-                <td>100%</td>
-                <td>100%</td>
+                <td id="YwhJ5lStYHp"></td>
+                <td>-</td>
               </tr>
               <tr>
                 <td colspan="2">VPI-1</td>
-                <td>100%</td>
-                <td>100%</td>
+                <td id="F63U0EPsz03">-</td>
+                <td>-</td>
               </tr>
               <tr>
                 <td colspan="2">VPI-2</td>
-                <td>100%</td>
-                <td>100%</td>
+                <td id="dnVIcFqExM8">-</td>
+                <td>-</td>
               </tr>
               <tr>
                 <td colspan="2">VAR-1</td>
-                <td>100%</td>
-                <td>100%</td>
+                <td id="bQkaHEIR4po">-</td>
+                <td>-</td>
               </tr>
               <tr>
                 <td colspan="2">VAR-2</td>
-                <td>100%</td>
-                <td>100%</td>
+                <td id="ShcxSZKYsOp">-</td>
+                <td>-</td>
               </tr>
               <tr>
                 <td colspan="2">VAA</td>
-                <td>100%</td>
-                <td>100%</td>
+                <td id="F8cgBB8z1V8">-</td>
+                <td>-</td>
               </tr>
               <tr>
                 <td colspan="2">MenA</td>
-                <td>100%</td>
-                <td>100%</td>
+                <td id="lHij0C81TkY">-</td>
+                <td>-</td>
               </tr>
               <tr>
                 <th colspan="2">Taux d'Abandon</th>
@@ -920,30 +987,30 @@
               </tr>
               <tr>
                 <td colspan="2">Penta-1/Penta-3</td>
-                <td>100%</td>
-                <td>100%</td>
+                <td id="qcPoPdqq6PQ">-</td>
+                <td>-</td>
               </tr>
               <tr>
                 <td colspan="2">Penta-1/VAR 1</td>
-                <td>100%</td>
-                <td>100%</td>
+                <td id="j8GGnwPN6pR">-</td>
+                <td>-</td>
               </tr>
               <tr>
                 <td colspan="2">Ecart VAR 1/VAA</td>
-                <td>100%</td>
-                <td>100%</td>
+                <td id="RJEfsKztwMk">-</td>
+                <td>-</td>
               </tr>
               <tr>
                 <td colspan="2">Ecart Polio 3/VPI 1</td>
-                <td>100%</td>
-                <td>100%</td>
+                <td id="ARrstEboQGm">-</td>
+                <td>-</td>
               </tr>
               </tbody>
           </table>
         </div>
       </section>
       <section id="section_four">
-        <h3>Activités de renforcement du PEV  </h3>
+        <h3 class="chart_headers">Activités de renforcement du PEV  </h3>
         <div>
           <table>
             <thead>
@@ -996,7 +1063,7 @@
         </div>
       </section>
       <section id="section_five">
-        <h3>Situation des stocks du dépôt du district </h3>
+        <h3 class="chart_headers">Situation des stocks du dépôt du district </h3>
         <table>
           <thead>
             <tr>
@@ -1011,15 +1078,15 @@
           <tbody>
             <tr>
               <td>BCG</td>
-              <td>2</td>
-              <td>3</td>
+              <td id="G8aw1WJsbZF">-</td>
+              <td>5</td>
               <td>4</td>
               <td>5</td>
               <td>6</td>
             </tr>
             <tr>
               <td>Penta</td>
-              <td>2</td>
+              <td id="ifoaUHJcRAE">-</td>
               <td>3</td>
               <td>4</td>
               <td>5</td>
@@ -1111,24 +1178,30 @@
         <!-- <p>(**) Quantite distribuee = Doses distribuees aux centres de sante  </p> -->
       </section>
       <section id="section_nine">
-        <h3>Completude & Promptitude</h3>
-        <div style="display: flex; justify-content: space-between;">
-          <canvas id="completude_promptitude" style="width: 50%;"></canvas>
-          <canvas id="total_reports" style="width: 50%;"></canvas>
+        <div class="chart_sub_container">
+          <h3 class="chart_headers">Completude & Promptitude</h3>
+          <div>
+            <canvas id="completude_promptitude" style="width: 50%;"></canvas>
+            <canvas id="total_reports" style="width: 50%;"></canvas>
+          </div>
         </div>
-        <h3>Coverage</h3>
-        <div style="display: flex; justify-content: space-between;">
-          <canvas id="coverage1" style="width: 50%;"></canvas>
-          <canvas id="coverage2" style="width: 50%;"></canvas>
+        <div class="chart_sub_container">
+          <h3 class="chart_headers">Coverage</h3>
+          <div>
+            <canvas id="coverage1" style="width: 50%;"></canvas>
+            <canvas id="coverage2" style="width: 50%;"></canvas>
+          </div>
         </div>
-        <h3>Performance</h3>
-        <div style="display: flex; justify-content: space-between;">
-          <canvas id="evolution_perf_by_coverage_penta3" style="width: 50%;"></canvas>
-          <canvas id="perf_by_category" style="width: 50%;"></canvas>
-        </div>
-        <div style="display: flex; justify-content: space-between;">
-          <canvas id="taux_de_perte_vaccine" style="width: 50%;"></canvas>
-          <canvas id="district_utilization_vaccine" style="width: 50%;"></canvas>
+        <div class="chart_sub_container">
+          <h3 class="chart_headers">Performance</h3>
+          <div>
+            <canvas id="evolution_perf_by_coverage_penta3" style="width: 50%;"></canvas>
+            <canvas id="perf_by_category" style="width: 50%;"></canvas>
+          </div>
+          <div>
+            <canvas id="taux_de_perte_vaccine" style="width: 50%;"></canvas>
+            <canvas id="district_utilization_vaccine" style="width: 50%;"></canvas>
+          </div>
         </div>
       </section>
       <section id="approvals" class="">
