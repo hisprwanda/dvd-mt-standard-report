@@ -199,6 +199,28 @@
       "G8aw1WJsbZF":"PEV-Stock de fin de mois BCG",
       "ifoaUHJcRAE":"PEV-Stock de fin de mois Pentavalent",
      }
+
+     const RAPPORT_MENSUEL_DE_VACCINATION_DOSE_UTILISE = {
+      "Frf9v7vj1oq":"BCG",
+      "JGuVTf8Bq9h":"Penta-1",
+      "S0bnPvSoIfj":"Polio-0",
+      "qixOTilCqnd":"VPI-1",
+      "kEp8d8zp4vr":"VAR-1",
+      "cz4LvRHmOF0":"VAA",
+      "eM254feUdsf":"MenA",
+      "upzBqVsI1vT":"Td"
+     }
+     const RAPPORT_MENSUEL_DE_VACCINATION_TAUX_DE_PERTE = {
+      "iw05W7AMKTh":"BCG",
+      "Nn3hEQuIwzq":"Penta-1",
+      "OOE82356j7j":"Polio-0",
+      "EBzNxSDOJrG":"VPI-1",
+      "noibwsCHHUj":"VAR-1",
+      "WRfYXW8v7K7":"VAA",
+      "mj4vqzWxeQE":"MenA",
+      "OhOu95np91v":"Td"
+
+     }
     
      function generateReportData(periods, orgUnit, organisationUnitChildren) {
     
@@ -245,6 +267,22 @@
         // SITUATION_DES_STOCKS_DU_DEPOT
         getIndicatorsValues({
             dx: Object.keys(SITUATION_DES_STOCKS_DU_DEPOT),
+            ou: [orgUnit.id],
+            pe: [...periods],
+            prefix: ''
+        })
+
+        // RAPPORT_MENSUEL_DE_VACCINATION_DOSE_UTILISE
+        getIndicatorsValues({
+            dx: Object.keys(RAPPORT_MENSUEL_DE_VACCINATION_DOSE_UTILISE),
+            ou: [orgUnit.id],
+            pe: [...periods],
+            prefix: ''
+        })
+
+         // RAPPORT_MENSUEL_DE_VACCINATION_TAUX_DE_PERTE
+         getIndicatorsValues({
+            dx: Object.keys(RAPPORT_MENSUEL_DE_VACCINATION_TAUX_DE_PERTE),
             ou: [orgUnit.id],
             pe: [...periods],
             prefix: ''
@@ -715,8 +753,8 @@
                 <td>0</td>
                 <td>0</td>
                 <td id="bcg_total"></td>
-                <td id="EUDIXTLbqFc.Y1IEJV78ohg"></td>
-                <td id="bcg_taux_perte"></td>
+                <td id="Frf9v7vj1oq"></td>
+                <td id="iw05W7AMKTh"></td>
               </tr>
               <tr>
                 <td>Penta-1</td>
@@ -724,8 +762,8 @@
                 <td id="G290xSRWg5N.LLStfhXXh1P"></td>
                 <td id="G290xSRWg5N.HOIDSzZmI70"></td>
                 <td id="Penta1_total"></td>
-                <td id="To8PtuGIrd6.Y1IEJV78ohg"></td>
-                <td id="penta1_taux_perte"></td>
+                <td id="JGuVTf8Bq9h"></td>
+                <td id="Nn3hEQuIwzq"></td>
               </tr>
               <tr>
                 <td>Penta-2</td>
@@ -750,9 +788,9 @@
                 <td id="BazGWWSuUSR.bM2ULjCnqKf"></td>
                 <td>-</td>
                 <td>-</td>
-                <td id="polio0_total"></td>
-                <td></td>
-                <td>4.17%</td>
+                <td id="polio0_total">-</td>
+                <td id="S0bnPvSoIfj">-</td>
+                <td id="OOE82356j7j"></td>
               </tr>
               <tr>
                 <td>Polio-1</td>
@@ -760,8 +798,8 @@
                 <td id="JRUmdPhq1Zi.LLStfhXXh1P"></td>
                 <td id="JRUmdPhq1Zi.HOIDSzZmI70 ">550</td>
                 <td  id="Polio-1_total">1350</td>
-                <td>1400</td>
-                <td>3.70%</td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td>Polio-2</td>
@@ -769,17 +807,17 @@
                 <td id="I10rLe4mqXu.LLStfhXXh1P"></td>
                 <td id="I10rLe4mqXu.HOIDSzZmI70"></td>
                 <td id="Polio-2_total"></td>
-                <td>1550</td>
-                <td>3.33%</td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td>Polio-3</td>
                 <td id="vE8pNKqjcdg.bM2ULjCnqKf"></td>
                 <td id="vE8pNKqjcdg.LLStfhXXh1P"></td>
                 <td id="vE8pNKqjcdg.HOIDSzZmI70"></td>
-                <td id="Polio-3_total""></td>
-                <td>1700</td>
-                <td>3.03%</td>
+                <td id="Polio-3_total"></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td>VPI-1</td>
@@ -787,8 +825,8 @@
                 <td id="hOuU8SwUG4X.LLStfhXXh1P"></td>
                 <td id="hOuU8SwUG4X.HOIDSzZmI70"></td>
                 <td id="VPI-1_total"></td>
-                <td>1850</td>
-                <td>2.78%</td>
+                <td id="qixOTilCqnd"></td>
+                <td id="EBzNxSDOJrG"></td>
               </tr>
               <tr>
                 <td>VPI-2</td>
@@ -796,8 +834,8 @@
                 <td id="jzSVIYXmw63.LLStfhXXh1P"></td>
                 <td id="jzSVIYXmw63.HOIDSzZmI70"></td>
                 <td id="VPI-2_total"></td>
-                <td>2000</td>
-                <td>2.56%</td>
+                <td>-</td>
+                <td></td>
               </tr>
               <tr>
                 <th>Antigenes</th>
@@ -814,8 +852,8 @@
                 <td id="S8JPuieBWVA.LLStfhXXh1P">-</td>
                 <td id="S8JPuieBWVA.HOIDSzZmI70">-</td>
                 <td id="var1_total">-</td>
-                <td>-</td>
-                <td>-</td>
+                <td id="kEp8d8zp4vr">-</td>
+                <td id="noibwsCHHUj">-</td>
               </tr>
               <tr>
                 <td>VAR-2</td>
@@ -832,8 +870,8 @@
                 <td id="SPfhUH7AuhZ.LLStfhXXh1P">-</td>
                 <td id="SPfhUH7AuhZ.HOIDSzZmI70">-</td>
                 <td id="vaa_total">-</td>
-                <td>-</td>
-                <td>-</td>
+                <td id="cz4LvRHmOF0">-</td>
+                <td id="WRfYXW8v7K7">-</td>
               </tr>
               <tr>
                 <td>MenA</td>
@@ -841,8 +879,8 @@
                 <td id="bssETYC2yiP.LLStfhXXh1P">-</td>
                 <td id="bssETYC2yiP.HOIDSzZmI70">-</td>
                 <td id="mena_total">-</td>
-                <td>-</td>
-                <td>-</td>
+                <td id="eM254feUdsf">-</td>
+                <td id="mj4vqzWxeQE">-</td>
               </tr>
               <tr>
                 <th rowspan="2">Antigenes</th>
@@ -860,8 +898,8 @@
                 <td id="xbaRHKQvYHO.vjuyYLw6VCY">-</td>
                 <td colspan="2">-</td>
                 <td id="td1_total">-</td>
-                <td>-</td>
-                <td>-</td>
+                <td id="upzBqVsI1vT">-</td>
+                <td id="OhOu95np91v">-</td>
               </tr>
               <tr>
                 <td>Td-2</td>
