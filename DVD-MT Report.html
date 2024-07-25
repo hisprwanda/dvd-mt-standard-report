@@ -14,7 +14,7 @@
   </head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Report Template</title>
+  <title>DV Report</title>
 
   <style>
     body {
@@ -561,7 +561,7 @@
         var datasets = {};
 
         data.rows.forEach(function (row) {
-          var period = data.metaData.items[row[1]].name;
+          var periodName = data.metaData.items[row[1]].name;
           var value = parseFloat(row[2]);
           var dx = row[0];
 
@@ -575,8 +575,9 @@
             };
           }
 
-          if (labels.indexOf(period) === -1) {
-            labels.push(period);
+          if (labels.indexOf(periodName) === -1) {
+            let label_name = periodName.split("_");
+            labels.push(label_name[label_name.length - 1]); // this will remove the prefixes like 'DV-DMT_' or 'PEV_'
           }
 
           datasets[dx].data.push(value);
