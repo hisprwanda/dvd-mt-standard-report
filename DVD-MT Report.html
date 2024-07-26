@@ -576,8 +576,7 @@
           }
 
           if (labels.indexOf(periodName) === -1) {
-            let label_name = periodName.split("_");
-            labels.push(label_name[label_name.length - 1]); // this will remove the prefixes like 'DV-DMT_' or 'PEV_'
+            labels.push(periodName);
           }
 
           datasets[dx].data.push(value);
@@ -588,10 +587,18 @@
           return datasets[key];
         });
 
-        // produce cumulative data for coverate graphs
-        if (isCumule) {
-          datasetsArray.forEach((dataset) => makeDataCumulative(dataset));
-        }
+        datasetsArray.forEach((dataset) => {
+          // Transform the data to cumulative
+          if (isCumule) {
+            let cumulativeSum = 0;
+            dataset.data = dataset.data.map((value) => (cumulativeSum += value));
+          }
+
+          // Split the label at the underscore and keep the last part 
+           // this will remove the prefixes like 'DV-DMT_' or 'PEV_'
+          const parts = dataset.label.split("_");
+          dataset.label = parts[parts.length - 1];
+        });
 
         var ctx = document.getElementById(element_id).getContext("2d");
 
