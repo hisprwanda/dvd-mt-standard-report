@@ -449,9 +449,9 @@
         const rows = data.rows;
         const headers = data.headers;
         // variables to store report values such as totals
-        let bcg_total = 0;
-        let penta1_total = 0;
-        let penta2_total = 0;
+        let bcg_total = "";
+        let penta1_total = "";
+        let penta2_total = "";
         let penta3_total = 0;
         let polio0_total = 0;
         let polio1_total = 0;
@@ -498,20 +498,52 @@
           } else if (dx.split(".")[0] === "I10rLe4mqXu") {
             polio2_total += parseInt(value);
           } else if (dx.split(".")[0] === "vE8pNKqjcdg") {
+            polio3_total += parseInt(value);
+          } else if (dx.split(".")[0] === "hOuU8SwUG4X") {
             vpi1_total += parseInt(value);
           } else if (dx.split(".")[0] === "jzSVIYXmw63") {
             vpi2_total += parseInt(value);
+          } else if (dx.split(".")[0] === "S8JPuieBWVA") {
+            var1_total += parseInt(value);
+          } else if (dx.split(".")[0] === "HSYr8SwzwUm") {
+            var2_total += parseInt(value);
+          } else if (dx.split(".")[0] === "SPfhUH7AuhZ") {
+            vaa_total += parseInt(value);
+          } else if (dx.split(".")[0] === "bssETYC2yiP") {
+            mena_total += parseInt(value);
+          } else if (dx.split(".")[0] === "xbaRHKQvYHO") {
+            td1_total += parseInt(value);
+          } else if (dx.split(".")[0] === "CzYvrZ5q70R") {
+            td2_total += parseInt(value);
+          } else if (dx.split(".")[0] === "fbwTqo4KYXu") {
+            td3_total += parseInt(value);
+          } else if (dx.split(".")[0] === "A2F4HzSSd2t") {
+            td4_total += parseInt(value);
+          } else if (dx.split(".")[0] === "ewklmEhXgbk") {
+            td5_total += parseInt(value);
           }
-
-          //TODO: add the above totals
         });
 
         // populate the totals in the html
-        // document.getElementById("bcg_total").innerHTML = bcg_total
-        // document.getElementById("penta1_total").innerHTML = penta1_total
-        // document.getElementById("penta2_total").innerHTML = penta2_total
-        // document.getElementById("penta3_total").innerHTML = penta3_total
-        //TODO: add the remaining totals.
+        document.getElementById("bcg_total").innerHTML = bcg_total;
+        document.getElementById("penta1_total").innerHTML = penta1_total;
+        document.getElementById("penta2_total").innerHTML = penta2_total;
+        document.getElementById("penta3_total").innerHTML = penta3_total;
+        document.getElementById("polio0_total").innerHTML = polio0_total;
+        document.getElementById("polio1_total").innerHTML = polio1_total;
+        document.getElementById("polio2_total").innerHTML = polio2_total;
+        document.getElementById("polio3_total").innerHTML = polio3_total;
+        document.getElementById("vpi1_total").innerHTML = vpi1_total;
+        document.getElementById("vpi2_total").innerHTML = vpi2_total;
+        document.getElementById("var1_total").innerHTML = var1_total;
+        document.getElementById("var2_total").innerHTML = var2_total;
+        document.getElementById("vaa_total").innerHTML = vaa_total;
+        document.getElementById("mena_total").innerHTML = mena_total;
+        document.getElementById("td1_total").innerHTML = td1_total;
+        document.getElementById("td2_total").innerHTML = td2_total;
+        document.getElementById("td3_total").innerHTML = td3_total;
+        document.getElementById("td4_total").innerHTML = td4_total;
+        document.getElementById("td5_total").innerHTML = td5_total;
       } catch (err) {
         console.log(err);
       }
@@ -881,8 +913,8 @@
                 <tr>
                   <td>BCG</td>
                   <td id="j3A8puUr3lT.bM2ULjCnqKf"></td>
-                  <td>0</td>
-                  <td>0</td>
+                  <td>-</td>
+                  <td>-</td>
                   <td id="bcg_total"></td>
                   <td id="Frf9v7vj1oq"></td>
                   <td id="iw05W7AMKTh"></td>
@@ -892,7 +924,7 @@
                   <td id="G290xSRWg5N.bM2ULjCnqKf"></td>
                   <td id="G290xSRWg5N.LLStfhXXh1P"></td>
                   <td id="G290xSRWg5N.HOIDSzZmI70"></td>
-                  <td id="Penta1_total"></td>
+                  <td id="penta1_total"></td>
                   <td id="JGuVTf8Bq9h"></td>
                   <td id="Nn3hEQuIwzq"></td>
                 </tr>
@@ -901,7 +933,7 @@
                   <td id="Ibe2Sfksm4h.bM2ULjCnqKf"></td>
                   <td id="Ibe2Sfksm4h.LLStfhXXh1P"></td>
                   <td id="Ibe2Sfksm4h.HOIDSzZmI70"></td>
-                  <td id="Penta2_total"></td>
+                  <td id="penta2_total"></td>
                   <td>-</td>
                   <td id="penta2_taux_perte"></td>
                 </tr>
@@ -928,16 +960,16 @@
                   <td id="JRUmdPhq1Zi.bM2ULjCnqKf"></td>
                   <td id="JRUmdPhq1Zi.LLStfhXXh1P"></td>
                   <td id="JRUmdPhq1Zi.HOIDSzZmI70 ">550</td>
-                  <td id="Polio-1_total">1350</td>
+                  <td id="polio1_total">1350</td>
                   <td></td>
                   <td></td>
                 </tr>
                 <tr>
                   <td>Polio-2</td>
-                  <td id="I10rLe4mqXu.bM2ULjCnqK"></td>
+                  <td id="I10rLe4mqXu.bM2ULjCnqKf"></td>
                   <td id="I10rLe4mqXu.LLStfhXXh1P"></td>
                   <td id="I10rLe4mqXu.HOIDSzZmI70"></td>
-                  <td id="Polio-2_total"></td>
+                  <td id="polio2_total"></td>
                   <td></td>
                   <td></td>
                 </tr>
@@ -946,7 +978,7 @@
                   <td id="vE8pNKqjcdg.bM2ULjCnqKf"></td>
                   <td id="vE8pNKqjcdg.LLStfhXXh1P"></td>
                   <td id="vE8pNKqjcdg.HOIDSzZmI70"></td>
-                  <td id="Polio-3_total"></td>
+                  <td id="polio3_total"></td>
                   <td></td>
                   <td></td>
                 </tr>
@@ -955,7 +987,7 @@
                   <td id="hOuU8SwUG4X.bM2ULjCnqKf"></td>
                   <td id="hOuU8SwUG4X.LLStfhXXh1P"></td>
                   <td id="hOuU8SwUG4X.HOIDSzZmI70"></td>
-                  <td id="VPI-1_total"></td>
+                  <td id="vpi1_total"></td>
                   <td id="qixOTilCqnd"></td>
                   <td id="EBzNxSDOJrG"></td>
                 </tr>
@@ -964,7 +996,7 @@
                   <td id="jzSVIYXmw63.bM2ULjCnqKf"></td>
                   <td id="jzSVIYXmw63.LLStfhXXh1P"></td>
                   <td id="jzSVIYXmw63.HOIDSzZmI70"></td>
-                  <td id="VPI-2_total"></td>
+                  <td id="vpi2_total"></td>
                   <td>-</td>
                   <td></td>
                 </tr>
