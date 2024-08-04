@@ -469,6 +469,8 @@
         let td4_total = 0;
         let td5_total = 0;
 
+        let finishedUpdating = false;
+
         // loop throught rows and populate the innerhtml using the ids
         rows.forEach((row) => {
           const [dx, ou, pe, value] = row;
@@ -521,29 +523,32 @@
             td4_total += parseInt(value);
           } else if (dx.split(".")[0] === "ewklmEhXgbk") {
             td5_total += parseInt(value);
+            finishedUpdating = true;
           }
         });
 
         // populate the totals in the html
-        document.getElementById("bcg_total").innerHTML = bcg_total;
-        document.getElementById("penta1_total").innerHTML = penta1_total;
-        document.getElementById("penta2_total").innerHTML = penta2_total;
-        document.getElementById("penta3_total").innerHTML = penta3_total;
-        document.getElementById("polio0_total").innerHTML = polio0_total;
-        document.getElementById("polio1_total").innerHTML = polio1_total;
-        document.getElementById("polio2_total").innerHTML = polio2_total;
-        document.getElementById("polio3_total").innerHTML = polio3_total;
-        document.getElementById("vpi1_total").innerHTML = vpi1_total;
-        document.getElementById("vpi2_total").innerHTML = vpi2_total;
-        document.getElementById("var1_total").innerHTML = var1_total;
-        document.getElementById("var2_total").innerHTML = var2_total;
-        document.getElementById("vaa_total").innerHTML = vaa_total;
-        document.getElementById("mena_total").innerHTML = mena_total;
-        document.getElementById("td1_total").innerHTML = td1_total;
-        document.getElementById("td2_total").innerHTML = td2_total;
-        document.getElementById("td3_total").innerHTML = td3_total;
-        document.getElementById("td4_total").innerHTML = td4_total;
-        document.getElementById("td5_total").innerHTML = td5_total;
+        if (finishedUpdating) {
+          document.getElementById("bcg_total").innerHTML = bcg_total;
+          document.getElementById("penta1_total").innerHTML = penta1_total;
+          document.getElementById("penta2_total").innerHTML = penta2_total;
+          document.getElementById("penta3_total").innerHTML = penta3_total;
+          document.getElementById("polio0_total").innerHTML = polio0_total;
+          document.getElementById("polio1_total").innerHTML = polio1_total;
+          document.getElementById("polio2_total").innerHTML = polio2_total;
+          document.getElementById("polio3_total").innerHTML = polio3_total;
+          document.getElementById("vpi1_total").innerHTML = vpi1_total;
+          document.getElementById("vpi2_total").innerHTML = vpi2_total;
+          document.getElementById("var1_total").innerHTML = var1_total;
+          document.getElementById("var2_total").innerHTML = var2_total;
+          document.getElementById("vaa_total").innerHTML = vaa_total;
+          document.getElementById("mena_total").innerHTML = mena_total;
+          document.getElementById("td1_total").innerHTML = td1_total;
+          document.getElementById("td2_total").innerHTML = td2_total;
+          document.getElementById("td3_total").innerHTML = td3_total;
+          document.getElementById("td4_total").innerHTML = td4_total;
+          document.getElementById("td5_total").innerHTML = td5_total;
+        }
       } catch (err) {
         console.log(err);
       }
@@ -698,7 +703,7 @@
       const chosenOrgUnitElement = document.getElementById("chosenOrgUnit");
 
       // Compare the selected_period with the current month and year
-      if (periods[0] === formattedCurrentDate) {
+      if (periods[0] >= formattedCurrentDate) {
         // If the selected period is the current month, show no_data_div and hide report_div
         noDivData.style.display = "block"; // Show
         reportDiv.style.display = "none"; // Hide
@@ -801,7 +806,7 @@
     }
   </script>
   <body>
-    <div id="no_data_div" style="display: none">No data available</div>
+    <div id="no_data_div" style="display: none">Aucune donnée disponible, veuillez choisir un mois avant ce mois.</div>
 
     <div id="report_div" style="display: none">
       <div style="text-align: center; margin: 10px auto">
@@ -959,8 +964,8 @@
                   <td>Polio-1</td>
                   <td id="JRUmdPhq1Zi.bM2ULjCnqKf"></td>
                   <td id="JRUmdPhq1Zi.LLStfhXXh1P"></td>
-                  <td id="JRUmdPhq1Zi.HOIDSzZmI70 ">550</td>
-                  <td id="polio1_total">1350</td>
+                  <td id="JRUmdPhq1Zi.HOIDSzZmI70 "></td>
+                  <td id="polio1_total"></td>
                   <td></td>
                   <td></td>
                 </tr>
